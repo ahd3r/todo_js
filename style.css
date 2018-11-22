@@ -1,0 +1,15 @@
+body{
+    font-family: 'Montserrat', sans-serif;
+}
+.main{
+    background: rgb(220, 220, 220);
+}
+.parent{
+    margin-top: 10%;
+}
+a{
+    color: black;
+}
+a:hover{
+    color: black;
+}
