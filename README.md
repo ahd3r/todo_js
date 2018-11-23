@@ -1,2 +1,2 @@
 # todo_js
-Simple todo
+Simple todo, with using local storage as a bd
