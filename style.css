@@ -26,13 +26,14 @@ a:hover{
     transition: 1s all;
     position: absolute;
     z-index: 100;
-    background: grey;
+    background: rgb(150, 150, 150);
     width: 100%;
     height: 100%;
     opacity: 1;
     visibility: visible;
 }
 .textinpre{
+    color: rgb(37, 37, 37);
     transition: 1s all;
     opacity: 0;
     visibility: hidden;

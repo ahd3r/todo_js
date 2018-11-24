@@ -1,12 +1,25 @@
 document.querySelector('.add').addEventListener('click', addTask);
+document.querySelector('#writerTasks').addEventListener('focus', addEnterKey);
 document.querySelector('body').onload=function(){
-    document.querySelector('.textinpre').style.visibility='visible';
-    document.querySelector('.textinpre').style.opacity='1';
+    setTimeout(function(){
+        document.querySelector('.textinpre').style.visibility='visible';
+        document.querySelector('.textinpre').style.opacity='1';
+    },1)
     setTimeout(function(){
         document.querySelector('.preloader').style.visibility='hidden';
         document.querySelector('.preloader').style.opacity='0';
     },1000);
 };
+
+function addEnterKey(e){
+    if(e.type==='focus'){
+        document.querySelector('#writerTasks').addEventListener('keypress', function(el){
+            if(el.key==='Enter'){
+                document.querySelector('.add').click();
+            }
+        });
+    }
+}
 
 const noTask=()=>{
     let divForChange=document.querySelector('#forStaff');
@@ -15,8 +28,8 @@ const noTask=()=>{
     }
     divForChange.appendChild(document.createElement('p')).className='text-center';
     divForChange.querySelector('p').textContent='No task';
-    document.querySelector('button').className='left btn black waves-effect waves-light disabled';
-    document.querySelector('input').value='';
+    document.querySelector('#del-btn').className='left btn black waves-effect waves-light disabled';
+    document.querySelector('#writerTasks').value='';
 };
 
 const yesTask=(getMasOfTasksFromStorage)=>{
@@ -38,9 +51,9 @@ const yesTask=(getMasOfTasksFromStorage)=>{
     backWallOdd.forEach(e=>{
         e.style.background='rgb(230, 230, 230)';
     });
-    document.querySelector('button').className='left btn black waves-effect waves-light';
+    document.querySelector('#del-btn').className='left btn black waves-effect waves-light';
     document.querySelector('#del-btn').addEventListener('click', delAll);
-    document.querySelector('input').value='';
+    document.querySelector('#writerTasks').value='';
 };
 
 function checkStart(noTask,yesTask){
@@ -59,7 +72,7 @@ checkStart(noTask,yesTask);
 function addTask(e){
     let getTaskFromStorage=localStorage.getItem('tasks');
     let masOfTasks=JSON.parse(getTaskFromStorage);
-    let writeStaff=document.querySelector('input').value;
+    let writeStaff=document.querySelector('#writerTasks').value;
     if(writeStaff!==''){
         masOfTasks.push(writeStaff);
         localStorage.setItem('tasks', JSON.stringify(masOfTasks));
