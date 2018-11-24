@@ -1,4 +1,12 @@
 document.querySelector('.add').addEventListener('click', addTask);
+document.querySelector('body').onload=function(){
+    document.querySelector('.textinpre').style.visibility='visible';
+    document.querySelector('.textinpre').style.opacity='1';
+    setTimeout(function(){
+        document.querySelector('.preloader').style.visibility='hidden';
+        document.querySelector('.preloader').style.opacity='0';
+    },1000);
+};
 
 const noTask=()=>{
     let divForChange=document.querySelector('#forStaff');
@@ -8,6 +16,7 @@ const noTask=()=>{
     divForChange.appendChild(document.createElement('p')).className='text-center';
     divForChange.querySelector('p').textContent='No task';
     document.querySelector('button').className='left btn black waves-effect waves-light disabled';
+    document.querySelector('input').value='';
 };
 
 const yesTask=(getMasOfTasksFromStorage)=>{
@@ -31,6 +40,7 @@ const yesTask=(getMasOfTasksFromStorage)=>{
     });
     document.querySelector('button').className='left btn black waves-effect waves-light';
     document.querySelector('#del-btn').addEventListener('click', delAll);
+    document.querySelector('input').value='';
 };
 
 function checkStart(noTask,yesTask){
@@ -62,7 +72,7 @@ function delAll(){
     checkStart(noTask,yesTask);
 }
 
-function delOneTask(e){ // add pre-load, clear an input after add task
+function delOneTask(e){
     let getTaskFromStorage=localStorage.getItem('tasks');
     let masOfTasks=JSON.parse(getTaskFromStorage);
     let thisTask = e.path[2].textContent;
